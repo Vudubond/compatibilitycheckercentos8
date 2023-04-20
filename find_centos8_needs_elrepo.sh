@@ -69,9 +69,9 @@ echo "Getting Device ID list from $IDLIST"
 #avoid arrays so this can work with ash, sh, bash
 grep '[[:blank:]]kmod-' $real_filename | tr -d '\r' | while read line;
 do
-  dev_type=`echo $line | cut -d ' ' -f1`
-  dev_id=`echo $line | cut -d ' ' -f2`
-  dev_driver=`echo $line | cut -d ' ' -f3`
+  dev_type=`echo $line | cut -d ' ' -f3|cut -d '>' -f2`
+  dev_id=`echo $line | cut -d ' ' -f4`
+  dev_driver=`echo $line | cut -d ' ' -f5|cut -d '<' -f1`
   echo -n $dev_type   > $id_hash_type/$dev_id
   echo -n $dev_driver > $id_hash_driver/$dev_id
 done
